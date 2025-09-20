@@ -8,7 +8,7 @@ function Users() {
     const [filteredUsers, setFilteredUsers] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:3001')
+        axios.get('https://crud-operations-mern-backend.onrender.com')
             .then(result => {
                 setUser(result.data)
                 setFilteredUsers(result.data)
@@ -35,7 +35,7 @@ function Users() {
 
 
     const handleDelete = (id) => {
-        axios.delete('http://localhost:3001/deleteUser/' + id)
+        axios.delete('https://crud-operations-mern-backend.onrender.com/deleteUser/' + id)
             .then(res => {
                 console.log(res)
                 // Update the state instead of reloading
