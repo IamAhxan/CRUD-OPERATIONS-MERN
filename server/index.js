@@ -4,7 +4,6 @@ const cors = require('cors')
 const UserModel = require('./models/Users')
 
 
-const mongoUrl = "mongodb+srv://mohammadahsan7744:2bUOKwM3L3MbY69G@cluster0.uydw7eo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 const app = express()
 const port = process.env.PORT || 3001;
