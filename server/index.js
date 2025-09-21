@@ -4,6 +4,7 @@ const cors = require('cors')
 const UserModel = require('./models/Users')
 
 
+const mongoUrl = "mongodb+srv://mohammadahsan7744:2bUOKwM3L3MbY69G@cluster0.uydw7eo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 const app = express()
 const port = process.env.PORT || 3001;
@@ -11,7 +12,7 @@ const port = process.env.PORT || 3001;
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect("mongodb://crud-operations-mern-backend.onrender.com:27017/crud")
+mongoose.connect(mongoUrl)
 
 app.get('/', (req, res) => {
     UserModel.find({})
