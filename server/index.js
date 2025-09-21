@@ -13,7 +13,26 @@ const mongoUrl = "mongodb+srv://mohammadahsan7744:2bUOKwM3L3MbY69G@cluster0.uydw
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect(mongoUrl)
+// mongoose.connect(mongoUrl)
+let isCOnnected = false;
+async function connectToMongoDB() {
+    try {
+        await mongoose.connect(mongoUrl, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        isCOnnected = true;
+        console.log("Connected to Mongo DB");
+    } catch (error) {
+        console.log("mongoDB error: ", error)
+    }
+}
+app.use((req, res, next) => {
+    if (!isCOnnected) {
+        connectToMongoDB()
+    }
+    next()
+})
 
 app.get('/', (req, res) => {
     UserModel.find({})
@@ -50,6 +69,8 @@ app.post("/createUser", (req, res) => {
     UserModel.create(req.body).then(users => res.json(users)).catch(err => res.json(err))
 })
 
-app.listen(port, () => {
-    console.log("server in running")
-})
+// app.listen(port, () => {
+//     console.log("server in running")
+// })
+
+module.exports = app
