@@ -11,7 +11,7 @@ const port = process.env.PORT || 3001;
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect("mongodb://127.0.0.1:27017/crud")
+mongoose.connect("mongodb://crud-operations-mern-backend.onrender.com:27017/crud")
 
 app.get('/', (req, res) => {
     UserModel.find({})
