@@ -8,14 +8,19 @@ const UserModel = require('./models/Users')
 const app = express()
 const port = process.env.PORT || 3001;
 
+const mongoUrl = "mongodb+srv://mohammadahsan7744:2bUOKwM3L3MbY69G@cluster0.uydw7eo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect("mongodb://127.0.0.1:27017/crud")
+mongoose.connect(mongoUrl)
 
 app.get('/', (req, res) => {
     UserModel.find({})
-        .then(users => res.json(users))
+        .then(users => {
+            res.send("server is running")
+            res.json(users)
+        })
         .catch(err => console.log(err))
 })
 
